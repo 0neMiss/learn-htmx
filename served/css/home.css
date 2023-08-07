@@ -1,16 +1,34 @@
-.films-header {
-
-}
-.movie-list {
-
-}
 .page-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 80%;
+    .left{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 40%;
+        height: 80%;
+        margin-left: 5rem;
+        .movie-list{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .right{
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: 10rem;
+        .input-container{
+            display: flex;
+            flex-direction: column;
+            .director, title{
+                margin-top: 3rem;
+            }
+        }
+    }
 }
+
 body{
     z-index: 100;
 }

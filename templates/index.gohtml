@@ -5,16 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Films</title>
     <link rel="stylesheet" href="assets/css/home.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 </head>
 <body>
     
   <div class="page-container">
-    <h1 class="films-header">Films: </h1>
-    {{ range .Films }}
+    <div class="left">
+      <h1 class="films-header">Films: </h1>
       <div class="movie-list">
-        <p>{{ .Title }} - {{ .Director }}</p>
+        {{ range .Films }}
+            <p class="movie-item">{{ .Title }} - {{ .Director }}</p>
+        {{ end }}
       </div>
-    {{ end }}
+    </div>
+    <div class="right">
+        <h1 class="add-movie">Add a movie!</h1>
+        <form hx-post="/add-film/">
+          <div class="input-container">
+            <input type="text"  placeholder="Enten a Director" class="director">
+            <input type="text" placeholder="Enter a Title" class="title">
+            <button type="submit" class="submit">Submit</button>
+          </div>
+        </form>
+    </div>
  </div>
 </body>
 </html>

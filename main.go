@@ -20,7 +20,16 @@ func init() {
 func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("./served"))))
 	http.HandleFunc("/", idx)
+	http.HandleFunc("/add-film/", addFilm)
 	log.Fatal(http.ListenAndServe(":8000", nil))
+}
+
+func addFilm(w http.ResponseWriter, r *http.Request) {
+	log.Print("Request recieved!")
+	log.Print(r.Header.Get("HX-Request"))
+	title := r.PostFormValue("title")
+	director := r.PostFormValue("director")
+
 }
 
 func idx(w http.ResponseWriter, r *http.Request) {
