@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -27,9 +28,13 @@ func main() {
 func addFilm(w http.ResponseWriter, r *http.Request) {
 	log.Print("Request recieved!")
 	log.Print(r.Header.Get("HX-Request"))
+	log.Print(r.PostForm)
 	title := r.PostFormValue("title")
 	director := r.PostFormValue("director")
-
+	log.Print(director)
+	htmlStr := fmt.Sprintf("<p class='movie-item'> %s - %s</p>", director, title)
+	tmpl, _ := template.New("t").Parse(htmlStr)
+	tmpl.Execute(w, nil)
 }
 
 func idx(w http.ResponseWriter, r *http.Request) {

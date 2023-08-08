@@ -12,7 +12,7 @@
   <div class="page-container">
     <div class="left">
       <h1 class="films-header">Films: </h1>
-      <div class="movie-list">
+      <div id="film-list"  class="movie-list">
         {{ range .Films }}
             <p class="movie-item">{{ .Title }} - {{ .Director }}</p>
         {{ end }}
@@ -20,10 +20,10 @@
     </div>
     <div class="right">
         <h1 class="add-movie">Add a movie!</h1>
-        <form hx-post="/add-film/">
+        <form hx-target="#film-list" hx-swap="beforeend" hx-post="/add-film/">
           <div class="input-container">
-            <input type="text"  placeholder="Enten a Director" class="director">
-            <input type="text" placeholder="Enter a Title" class="title">
+            <input type="text" name="director" placeholder="Enten a Director" class="director">
+            <input type="text" name="title" placeholder="Enter a Title" class="title">
             <button type="submit" class="submit">Submit</button>
           </div>
         </form>
